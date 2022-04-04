@@ -14,6 +14,7 @@ class AdminController extends Controller
         return view('admin.index');
     }
     function menu(){
+<<<<<<< Updated upstream
         $no = 1;
         $sub_no = 1;
         $menus = Menu::where('menu_id_parent', null)->orderBy('urut', 'ASC')->get();
@@ -54,6 +55,11 @@ class AdminController extends Controller
             }
         };
         return back();
+=======
+        $menus = Menu::where('menu_id_parent', null)->get();
+        $childs = Menu::where('menu_id_parent', '!=', null)->get();
+        return view('admin.menu', compact('menus', 'childs'));
+>>>>>>> Stashed changes
     }
 
     // AUTH
