@@ -22,6 +22,7 @@ Route::prefix('/admin')->group(function () {
 
         Route::middleware(['guest'])->group(function () {
             Route::get('/', 'dashboard')->name('admin-dashboard');
+            Route::get('/menus', 'menu')->name('admin-menu');
         });
 
         Route::middleware(['guest'])->group(function () {
