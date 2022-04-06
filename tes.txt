@@ -1,0 +1,4 @@
++ kategori otomatis huruf awal besar
+- validasi form
+- Modal berhasil crud
+- Modal delete post

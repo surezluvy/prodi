@@ -163,9 +163,9 @@
                 @foreach($menus as $d)
                 <li class="dd-item list-group-item list-group-item-primary rounded" data-menu_id="{{ $d->menu_id }}">
                     <div class="dd-handle">{{ $d->name }}</div>
-                    {{-- {{ \App\Models\Menu::where('menu_id_parent', $d->menu_id)->get() }} --}}
+                    {{-- {{ \App\Models\Menu::where('parent_id', $d->menu_id)->get() }} --}}
                     <ol class="dd-list">
-                        @foreach(\App\Models\Menu::where('menu_id_parent', $d->menu_id)->get() as $c)
+                        @foreach(\App\Models\Menu::where('parent_id', $d->menu_id)->get() as $c)
                         <li class="dd-item list-group-item list-group-item-danger rounded" data-menu_id="{{ $c->menu_id }}"><div class="dd-handle">{{ $c->name }}</div></li>
                         @endforeach
                     </ol>
