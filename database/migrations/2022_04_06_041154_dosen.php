@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id');
+        Schema::create('lecturers', function (Blueprint $table) {
+            $table->id('lecturer_id');
             $table->string('name')->unique();
-            $table->string('urut');
-            $table->text('link');
-            $table->integer('parent_id')->nullable();
+            $table->string('code')->unique();
+            $table->integer('nidn')->unique();
             $table->timestamps();
         });
     }

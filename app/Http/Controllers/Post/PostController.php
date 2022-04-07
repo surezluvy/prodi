@@ -22,11 +22,11 @@ class PostController extends Controller
         $categories = Category::where('parent_id', null)->orderBy('urut', 'ASC')->get();
         // dd(Post::with('category')->where('category_id', 1)->get());
 
-        return view('admin.main.post', compact('posts', 'categories'));
+        return view('admin.main.post.post', compact('posts', 'categories'));
     }
     function addPost(){
         $categories = Category::where('parent_id', '!=', null)->orderBy('urut', 'ASC')->get();
-        return view('admin.main.add-post', compact('categories'));
+        return view('admin.main.post.add-post', compact('categories'));
     }
     function addPostProcess(Request $request){
         Post::create([
@@ -39,7 +39,7 @@ class PostController extends Controller
     function editPost($id){
         $post = Post::with('category')->where('post_id', $id)->first();
         $categories = Category::where('parent_id', '!=', null)->orderBy('urut', 'ASC')->get();
-        return view('admin.main.edit-post', compact('categories', 'post'));
+        return view('admin.main.post.edit-post', compact('categories', 'post'));
     }
     function editPostProcess(Request $request){
         Post::where('post_id', $request->id)->update([

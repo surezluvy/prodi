@@ -31,6 +31,10 @@
                                             <label class="col-form-label" for="recipient-name">Nama kategori:</label>
                                             <input autofocus class="form-control" type="text" name="name">
                                         </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label" for="recipient-name">Link (Kosongkan jika tidak ingin menggunakan link):</label>
+                                            <input autofocus class="form-control" type="text" name="link">
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button"
@@ -50,7 +54,10 @@
                             @foreach($menus as $d)
                             <li class="dd-item dd3-item" data-category_id="{{ $d->category_id }}" data-urut="{{ $d->urut }}">
                                 <div class="dd-handle dd3-handle"></div><div class="dd3-content">
-                                    {{ $d->name }} 
+                                    {{ $d->name }}
+                                    @if($d->link != NULL) 
+                                    <span class="badge badge-danger rounded-pill" style="margin-left: 15px;">Link</span>
+                                    @endif
                                     <a href="#" class="text-danger" style="float: right; margin-right: 5px;"><span class="badge badge-danger rounded-pill"><i class="fa fa-trash-o" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delete-{{ $d->category_id }}"></i></span></a>
                                     <a href="#" class="text-primary" style="float: right; margin-right: 5px;"><span class="badge badge-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#edit-{{ $d->category_id }}"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
                                 </div>
@@ -92,6 +99,10 @@
                                                         <label class="col-form-label" for="recipient-name">Nama kategori:</label>
                                                         <input autofocus class="form-control" type="text" name="name" value="{{ $d->name }}">
                                                     </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label" for="recipient-name">Link (Kosongkan jika tidak ingin menggunakan link):</label>
+                                                        <input autofocus class="form-control" type="text" name="link" value="{{ $d->link }}">
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button"
@@ -109,6 +120,9 @@
                                     data-category_id="{{ $c->category_id }}" data-urut="{{ $c->urut }}">
                                         <div class="dd-handle dd3-handle"></div><div class="dd3-content">
                                             {{ $c->name }}
+                                            @if($d->link != NULL) 
+                                            <span class="badge badge-danger rounded-pill" style="margin-left: 15px;">Link</span>
+                                            @endif
                                             <a href="#" class="text-danger" style="float: right; margin-right: 5px;"><span class="badge badge-danger rounded-pill"><i class="fa fa-trash-o" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delete2-{{ $c->category_id }}"></i></span></a>
                                             <a href="#" class="text-primary" style="float: right; margin-right: 5px;"><span class="badge badge-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#edit2-{{ $c->category_id }}"><i class="fa fa-pencil" aria-hidden="true"></i></span></a>
                                         </div>
@@ -149,6 +163,10 @@
                                                             <div class="mb-3">
                                                                 <label class="col-form-label" for="recipient-name">Nama kategori:</label>
                                                                 <input autofocus class="form-control" type="text" name="name" value="{{ $c->name }}">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="col-form-label" for="recipient-name">Link (Kosongkan jika tidak ingin menggunakan link):</label>
+                                                                <input autofocus class="form-control" type="text" name="link" value="{{ $c->link }}">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

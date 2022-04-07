@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\DosenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,13 @@ Route::prefix('/admin')->group(function () {
                     Route::post('/add-category', 'addCategory')->name('admin-add-category');
                     Route::get('/delete-category/id={id}', 'deleteCategory')->name('admin-delete-category');
                     Route::post('/edit-category/id={id}', 'editCategory')->name('admin-edit-category');
+                });
+            });
+
+            Route::prefix('/dosen')->group(function() {
+                Route::controller(DosenController::class)->group(function () {
+                    Route::get('/', 'index')->name('admin-dosen');
+                    Route::post('/edit-dosen/id={id}', 'editDosen')->name('admin-edit-dosen');
                 });
             });
         });

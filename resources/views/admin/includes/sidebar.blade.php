@@ -25,7 +25,10 @@
                 <li><a href="{{ route('admin-post') }}">Post</a></li>
               </ul>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Bookmarks</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin-dosen') }}"><i data-feather="heart"> </i><span>Dosen</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Kurikulum</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Prestasi</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Galery</span></a></li>
 
           </ul>
         </div>

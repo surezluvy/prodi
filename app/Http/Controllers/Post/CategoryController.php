@@ -18,7 +18,7 @@ class CategoryController extends Controller
     function index(){
         $menus = Category::where('parent_id', null)->orderBy('urut', 'ASC')->get();
         
-        return view('admin.main.category', compact('menus'));
+        return view('admin.main.post.category', compact('menus'));
     }
     function sortCategory(Request $request){
         $data1 = json_decode($request->test);
@@ -63,10 +63,19 @@ class CategoryController extends Controller
             $last = 1;
         }
         
-        Category::create([
-            'name' => ucfirst($request->name),
-            'urut' => $last
-        ]);
+        if(isset($request->link)){
+            Category::create([
+                'name' => ucfirst($request->name),
+                'link' => $request->link,
+                'urut' => $last
+            ]);
+        }else{
+            Category::create([
+                'name' => ucfirst($request->name),
+                'urut' => $last
+            ]);
+        }
+
         return back();
     }
     function deleteCategory($id){
@@ -74,9 +83,16 @@ class CategoryController extends Controller
         return back();
     }
     function editCategory(Request $request, $id){
-        Category::where('category_id', $id)->update([
-            'name' => $request->name,
-        ]);
+        if(isset($request->link)){
+            Category::where('category_id', $id)->update([
+                'name' => ucfirst($request->name),
+                'link' => $request->link,
+            ]);
+        }else{
+            Category::where('category_id', $id)->update([
+                'name' => ucfirst($request->name),
+            ]);
+        }
         return back();
     }
 }
