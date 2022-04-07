@@ -12,52 +12,9 @@
                         function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will
                         be immediately added to the table, as shown in this example.</span>
                     <br>
-                    <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#create" class="btn btn-pill btn-primary" title=""
+                    <a href="{{ route('admin-add-post') }}" class="btn btn-pill btn-primary" title=""
                         data-bs-original-title="btn btn-pill btn-primary"
-                        data-original-title="btn btn-pill btn-success">+ Tambah dosen</button>
-
-                    <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel2">Tambah dosen</h5>
-                                    <button class="btn-close" type="button" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <form method="post" action="{{ route('admin-add-dosen') }}">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Nama dosen:</label>
-                                            <input autofocus class="form-control" type="text" name="name">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Kode:</label>
-                                            <input class="form-control" type="text" name="code">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">NIDN:</label>
-                                            <input class="form-control" type="text" name="nidn">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Riwayat Pendidikan: <small class="text-secondary">*Pisahkan dengan koma</small></label>
-                                            <input class="form-control" type="text" name="education">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Bidang keahlian: <small class="text-secondary">*Pisahkan dengan koma</small></label>
-                                            <input class="form-control" type="text" name="expertise">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button class="btn btn-primary" type="submit">Tambah</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                        data-original-title="btn btn-pill btn-success">+ Tambah post</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -80,8 +37,16 @@
                                     <td>{{ $dosen->name }}</td>
                                     <td>{{ $dosen->code }}</td>
                                     <td>{{ $dosen->nidn }}</td>
-                                    <td>{{ $dosen->education }}</td>
-                                    <td>{{ $dosen->expertise }}</td>
+                                    <td>
+                                    @foreach($dosen->education as $pendidikan)
+                                        {{ $pendidikan->name }},&nbsp;
+                                    @endforeach
+                                    </td>
+                                    <td>
+                                    @foreach($dosen->expertise as $keahlian)
+                                        {{ $keahlian->name }},&nbsp;
+                                    @endforeach
+                                    </td>
                                     <td>
                                         <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#edit-{{ $dosen->lecturer_id }}"
                                             class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
@@ -114,14 +79,27 @@
                                                         <input class="form-control" type="text" name="nidn" value="{{ $dosen->nidn }}">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="col-form-label" for="recipient-name">Riwayat Pendidikan: <small class="text-secondary">*Pisahkan dengan koma</small></label>
+                                                        <label class="col-form-label" for="recipient-name">Riwayat Pendidikan:</label>
+                                                        {{-- <input class="form-control" type="hidden" name="educationId" 
+                                                            value="@foreach($dosen->education as $pendidikan){{ $pendidikan->education_id }}, @endforeach"
+                                                        > --}}
+                                                        @foreach($dosen->education as $pendidikan)
                                                         <input class="form-control" type="text" name="education" 
-                                                            value="{{ $dosen->education }}">
+                                                            value="{{ $pendidikan->name }}, "
+                                                        >
+                                                        @endforeach
+                                                        {{-- @foreach($dosen->education as $pendidikan)
+                                                            <input class="form-control" type="text" name="education-{{ $pendidikan->education_id }}" value="{{ $pendidikan->name }}">
+                                                        @endforeach --}}
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="col-form-label" for="recipient-name">Bidang keahlian: <small class="text-secondary">*Pisahkan dengan koma</small></label>
+                                                        <label class="col-form-label" for="recipient-name">Bidang Keahlian:</label>
+                                                        <input class="form-control" type="hidden" name="expertiseId" 
+                                                            value="@foreach($dosen->expertise as $keahlian){{ $keahlian->expertise_id }}, @endforeach"
+                                                        >
                                                         <input class="form-control" type="text" name="expertise" 
-                                                            value="{{ $dosen->expertise }}">
+                                                            value="@foreach($dosen->expertise as $keahlian){{ $keahlian->name }}, @endforeach"
+                                                        >
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -150,7 +128,7 @@
                                             <div class="modal-footer">
                                                 <button class="btn btn-primary" type="button"
                                                     data-bs-dismiss="modal">Tutup</button>
-                                                <a href="{{ route('admin-delete-dosen', $dosen->lecturer_id) }}" class="btn btn-secondary" type="submit">Hapus</a>
+                                                <a href="{{ route('admin-delete-category', $dosen->lecturer_id) }}" class="btn btn-secondary" type="submit">Hapus</a>
                                             </div>
                                         </div>
                                     </div>
@@ -165,4 +143,45 @@
         <!-- Zero Configuration  Ends-->
     </div>
 </div>
+@endsection
+@section('script')
+
+$(document).ready(function() {
+    var i = 1;
+    $('#add').click(function() {
+        if (i <= 7) {
+        $('#dynamic_field').append('<div id="row' + i + '"><label" for="member_' + i + '">Member ' + i + '</label><input type="text" name="member_' + i + '" value="member_' + i + '"></div>')
+        i++;
+        $('.btn_remove').removeClass('hidden');
+        }
+    });
+    $(document).on('click', '.btn_remove', function() {
+        var button_id = $(this).attr("id");
+        console.log('1 => '.button_id);
+        i--;
+        $('#row' + $('#dynamic_field div').length).remove();
+        if (i<=1) {
+        $('.btn_remove').addClass('hidden');
+        }
+    });
+});
+$(document).ready(function() {
+    var o = 1;
+    $('#add2').click(function() {
+        if (o <= 7) {
+        $('#dynamic_field2').append('<div id="row' + o + '"><label" for="exp_' + o + '">Member ' + o + '</label><input type="text" name="exp_' + o + '" value="exp_' + o + '"></div>')
+        o++;
+        $('.btn_remove2').removeClass('hidden');
+        }
+    });
+    $(document).on('click', '.btn_remove2', function() {
+        var button_id2 = $(this).attr("id");
+        console.log('2 => '.button_id2);
+        o--;
+        $('#row' + $('#dynamic_field2 div').length).remove();
+        if (o<=1) {
+        $('.btn_remove2').addClass('hidden');
+        }
+    });
+});
 @endsection

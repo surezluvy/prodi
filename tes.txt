@@ -2,3 +2,5 @@
 - validasi form
 - Modal berhasil crud
 - Modal delete post
+- Pendidikan dan keahlian dosen masih biasa
+- Jenis mk belum option

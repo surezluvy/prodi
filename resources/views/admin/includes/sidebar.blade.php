@@ -19,15 +19,15 @@
               </div>
             </li>
 
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Post</span></a>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="file-text"></i><span>Post</span></a>
               <ul class="sidebar-submenu">
                 <li><a href="{{ route('admin-category') }}">Kategori</a></li>
                 <li><a href="{{ route('admin-post') }}">Post</a></li>
               </ul>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin-dosen') }}"><i data-feather="heart"> </i><span>Dosen</span></a></li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Kurikulum</span></a></li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Prestasi</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin-dosen') }}"><i data-feather="users"></i><span>Dosen</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin-kurikulum') }}"><i data-feather="book-open"> </i><span>Kurikulum</span></a></li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('admin-prestasi') }}"><i data-feather="heart"> </i><span>Prestasi</span></a></li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="bookmark.html"><i data-feather="heart"> </i><span>Galery</span></a></li>
 
           </ul>

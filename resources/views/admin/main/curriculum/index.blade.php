@@ -14,39 +14,43 @@
                     <br>
                     <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#create" class="btn btn-pill btn-primary" title=""
                         data-bs-original-title="btn btn-pill btn-primary"
-                        data-original-title="btn btn-pill btn-success">+ Tambah dosen</button>
+                        data-original-title="btn btn-pill btn-success">+ Tambah kurikulum</button>
 
                     <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel2">Tambah dosen</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel2">Tambah kurikulum</h5>
                                     <button class="btn-close" type="button" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form method="post" action="{{ route('admin-add-dosen') }}">
+                                <form method="post" action="{{ route('admin-add-kurikulum') }}">
                                     @csrf
                                     <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Nama dosen:</label>
-                                            <input autofocus class="form-control" type="text" name="name">
-                                        </div>
                                         <div class="mb-3">
                                             <label class="col-form-label" for="recipient-name">Kode:</label>
                                             <input class="form-control" type="text" name="code">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">NIDN:</label>
-                                            <input class="form-control" type="text" name="nidn">
+                                            <label class="col-form-label" for="recipient-name">Nama:</label>
+                                            <input autofocus class="form-control" type="text" name="name">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Riwayat Pendidikan: <small class="text-secondary">*Pisahkan dengan koma</small></label>
-                                            <input class="form-control" type="text" name="education">
+                                            <label class="col-form-label" for="recipient-name">Syarat Ambil:</label>
+                                            <input class="form-control" type="text" name="syarat_ambil">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="col-form-label" for="recipient-name">Bidang keahlian: <small class="text-secondary">*Pisahkan dengan koma</small></label>
-                                            <input class="form-control" type="text" name="expertise">
+                                            <label class="col-form-label" for="recipient-name">Syarat Lulus:</label>
+                                            <input class="form-control" type="text" name="syarat_lulus">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label" for="recipient-name">Jenis MK:</label>
+                                            <input class="form-control" type="text" name="jenis_mk">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label" for="recipient-name">SKS:</label>
+                                            <input class="form-control" type="number" name="sks">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -65,31 +69,33 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama</th>
                                     <th>Kode</th>
-                                    <th>NIDN</th>
-                                    <th>Pendidikan</th>
-                                    <th>Bidang Keahlian</th>
+                                    <th>Nama</th>
+                                    <th>Syarat Ambil</th>
+                                    <th>Syarat Lulus</th>
+                                    <th>Jenis MK</th>
+                                    <th>SKS</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($dosens as $dosen)
+                                @foreach($kurikulum as $k)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $dosen->name }}</td>
-                                    <td>{{ $dosen->code }}</td>
-                                    <td>{{ $dosen->nidn }}</td>
-                                    <td>{{ $dosen->education }}</td>
-                                    <td>{{ $dosen->expertise }}</td>
+                                    <td>{{ $k->code }}</td>
+                                    <td>{{ $k->name }}</td>
+                                    <td>{{ $k->syarat_ambil }}</td>
+                                    <td>{{ $k->syarat_lulus }}</td>
+                                    <td>{{ $k->jenis_mk }}</td>
+                                    <td>{{ $k->sks }}</td>
                                     <td>
-                                        <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#edit-{{ $dosen->lecturer_id }}"
+                                        <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#edit-{{ $k->kurikulum_id }}"
                                             class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                        <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delete-{{ $dosen->lecturer_id }}"
+                                        <button type="button" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#delete-{{ $k->kurikulum_id }}"
                                             class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="edit-{{ $dosen->lecturer_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="edit-{{ $k->kurikulum_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -98,30 +104,35 @@
                                                 <button class="btn-close" type="button" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <form method="post" action="{{ route('admin-edit-dosen', $dosen->lecturer_id) }}">
+                                            <form method="post" action="{{ route('admin-edit-kurikulum', $k->kurikulum_id) }}">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="mb-3">
-                                                        <label class="col-form-label" for="recipient-name">Nama dosen:</label>
-                                                        <input autofocus class="form-control" type="text" name="name" value="{{ $dosen->name }}">
-                                                    </div>
-                                                    <div class="mb-3">
                                                         <label class="col-form-label" for="recipient-name">Kode:</label>
-                                                        <input class="form-control" type="text" name="code" value="{{ $dosen->code }}">
+                                                        <input class="form-control" type="text" name="code" value="{{ $k->code }}">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="col-form-label" for="recipient-name">NIDN:</label>
-                                                        <input class="form-control" type="text" name="nidn" value="{{ $dosen->nidn }}">
+                                                        <label class="col-form-label" for="recipient-name">Nama:</label>
+                                                        <input autofocus class="form-control" type="text" name="name" value="{{ $k->name }}">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="col-form-label" for="recipient-name">Riwayat Pendidikan: <small class="text-secondary">*Pisahkan dengan koma</small></label>
-                                                        <input class="form-control" type="text" name="education" 
-                                                            value="{{ $dosen->education }}">
+                                                        <label class="col-form-label" for="recipient-name">Syarat Ambil:</label>
+                                                        <input class="form-control" type="text" name="syarat_ambil" value="{{ $k->syarat_ambil }}">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="col-form-label" for="recipient-name">Bidang keahlian: <small class="text-secondary">*Pisahkan dengan koma</small></label>
-                                                        <input class="form-control" type="text" name="expertise" 
-                                                            value="{{ $dosen->expertise }}">
+                                                        <label class="col-form-label" for="recipient-name">Syarat Lulus:</label>
+                                                        <input class="form-control" type="text" name="syarat_lulus" 
+                                                            value="{{ $k->syarat_lulus }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label" for="recipient-name">Jenis MK:</label>
+                                                        <input class="form-control" type="text" name="jenis_mk" 
+                                                            value="{{ $k->jenis_mk }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="col-form-label" for="recipient-name">SKS:</label>
+                                                        <input class="form-control" type="number" name="sks" 
+                                                            value="{{ $k->sks }}">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -133,7 +144,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="delete-{{ $dosen->lecturer_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="delete-{{ $k->kurikulum_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -144,13 +155,13 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label class="col-form-label" for="recipient-name">Apakah anda yakin akan menghapus menu <strong>{{ $dosen->name }}</strong>?</label>
+                                                    <label class="col-form-label" for="recipient-name">Apakah anda yakin akan menghapus kurikulum <strong>{{ $k->name }}</strong>?</label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-primary" type="button"
                                                     data-bs-dismiss="modal">Tutup</button>
-                                                <a href="{{ route('admin-delete-dosen', $dosen->lecturer_id) }}" class="btn btn-secondary" type="submit">Hapus</a>
+                                                <a href="{{ route('admin-delete-kurikulum', $k->kurikulum_id) }}" class="btn btn-secondary" type="submit">Hapus</a>
                                             </div>
                                         </div>
                                     </div>

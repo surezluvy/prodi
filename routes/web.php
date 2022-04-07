@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\PrestasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +49,27 @@ Route::prefix('/admin')->group(function () {
             Route::prefix('/dosen')->group(function() {
                 Route::controller(DosenController::class)->group(function () {
                     Route::get('/', 'index')->name('admin-dosen');
+                    Route::post('/add-dosen', 'addDosen')->name('admin-add-dosen');
                     Route::post('/edit-dosen/id={id}', 'editDosen')->name('admin-edit-dosen');
+                    Route::get('/delete-dosen/id={id}', 'deleteDosen')->name('admin-delete-dosen');
+                });
+            });
+
+            Route::prefix('/kurikulum')->group(function() {
+                Route::controller(CurriculumController::class)->group(function () {
+                    Route::get('/', 'index')->name('admin-kurikulum');
+                    Route::post('/add-kurikulum', 'addKurikulum')->name('admin-add-kurikulum');
+                    Route::post('/edit-kurikulum/id={id}', 'editKurikulum')->name('admin-edit-kurikulum');
+                    Route::get('/delete-kurikulum/id={id}', 'deleteKurikulum')->name('admin-delete-kurikulum');
+                });
+            });
+
+            Route::prefix('/prestasi')->group(function() {
+                Route::controller(PrestasiController::class)->group(function () {
+                    Route::get('/', 'index')->name('admin-prestasi');
+                    Route::post('/add-prestasi', 'addPrestasi')->name('admin-add-prestasi');
+                    Route::post('/edit-prestasi/id={id}', 'editPrestasi')->name('admin-edit-prestasi');
+                    Route::get('/delete-prestasi/id={id}', 'deletePrestasi')->name('admin-delete-prestasi');
                 });
             });
         });
