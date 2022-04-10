@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Post\PageController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\CurriculumController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +20,20 @@ use App\Http\Controllers\PrestasiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('/')->group(function () {
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/page={id}', 'post')->name('post');
+        Route::get('/page-single={id}', 'postSingle')->name('post-single');
+    });
 });
 Route::prefix('/admin')->group(function () {
     Route::controller(AdminController::class)->group(function () {
 
         Route::middleware(['guest'])->group(function () {
-            Route::get('/', 'dashboard')->name('admin-dashboard');
+            
+            Route::get('/', 'index')->name('admin-dashboard');
+
             Route::prefix('/post')->group(function () {
                 Route::controller(PostController::class)->group(function () {
                     Route::get('/', 'index')->name('admin-post');
@@ -35,6 +42,15 @@ Route::prefix('/admin')->group(function () {
                     Route::get('/edit-post/id={id}', 'editPost')->name('admin-edit-post');
                     Route::post('/edit-post-process', 'editPostProcess')->name('admin-edit-post-process');
                     Route::get('/delete-post/id={id}', 'deletePost')->name('admin-delete-post');
+                });
+                
+                Route::controller(PageController::class)->group(function () {
+                    Route::get('/page', 'index')->name('admin-page');
+                    Route::get('/add-page', 'addPage')->name('admin-add-page');
+                    Route::post('/add-page-process', 'addPageProcess')->name('admin-add-page-process');
+                    Route::get('/edit-page/id={id}', 'editPage')->name('admin-edit-page');
+                    Route::post('/edit-page-process', 'editPageProcess')->name('admin-edit-page-process');
+                    Route::get('/delete-page/id={id}', 'deletePage')->name('admin-delete-page');
                 });
 
                 Route::controller(CategoryController::class)->group(function () {

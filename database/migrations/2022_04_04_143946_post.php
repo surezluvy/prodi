@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
             $table->string('title');
-            $table->text('content');
+            $table->string('thumbnail')->nullable();
+            $table->longText('content');
             $table->timestamps();
         });
     }

@@ -24,15 +24,25 @@ class PostController extends Controller
 
         return view('admin.main.post.post', compact('posts', 'categories'));
     }
+    function pages(){
+        $posts = Post::with('category')->where('thumbnail', '=', null)->get();
+        $categories = Category::where('parent_id', null)->orderBy('urut', 'ASC')->get();
+        // dd(Post::with('category')->where('category_id', 1)->get());
+
+        return view('admin.main.post.page', compact('posts', 'categories'));
+    }
     function addPost(){
-        $categories = Category::where('parent_id', '!=', null)->orderBy('urut', 'ASC')->get();
-        return view('admin.main.post.add-post', compact('categories'));
+        $menus = Category::where('child', 1)->where('link', null)->orderBy('urut', 'ASC')->get();
+        return view('admin.main.post.add-post', compact('menus'));
     }
     function addPostProcess(Request $request){
+        $image = $request->file('thumbnail');
+        $image->storeAs('public/thumbnail', $image->hashName());
         Post::create([
             'category_id' => $request->category_id,
             'title' => ucfirst($request->title),
-            'content' => $request->content
+            'content' => $request->content,
+            'thumbnail' => $image->hashName()
         ]);
         return redirect()->route('admin-post');
     }

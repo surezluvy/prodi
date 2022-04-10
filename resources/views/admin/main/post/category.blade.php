@@ -52,7 +52,7 @@
                     <div class="dd" id="nestable">
                         <ol class="dd-list">
                             @foreach($menus as $d)
-                            <li class="dd-item dd3-item" data-category_id="{{ $d->category_id }}" data-urut="{{ $d->urut }}">
+                            <li class="dd-item dd3-item" data-category_id="{{ $d->category_id }}" data-urut="{{ $d->urut }}" data-parrent="{{ $d->parrent }}">
                                 <div class="dd-handle dd3-handle"></div><div class="dd3-content">
                                     {{ $d->name }}
                                     @if($d->link != NULL) 
@@ -117,7 +117,7 @@
                                     @foreach(\App\Models\Category::where('parent_id', $d->category_id)->orderBy('urut',
                                     'ASC')->get() as $c)
                                     <li class="dd-item dd3-item"
-                                    data-category_id="{{ $c->category_id }}" data-urut="{{ $c->urut }}">
+                                    data-category_id="{{ $c->category_id }}" data-urut="{{ $c->urut }}" data-parrent="{{ $d->parrent }}">
                                         <div class="dd-handle dd3-handle"></div><div class="dd3-content">
                                             {{ $c->name }}
                                             @if($d->link != NULL) 
@@ -190,7 +190,7 @@
                         @csrf
                         {{-- <textarea id="test" name="test"></textarea> --}}
                         {{-- <input type="text" id="ayam" name="test" required> --}}
-                        <textarea  id="ayam" hidden name="test" required cols="150" rows="20"></textarea>
+                        <textarea  id="ayam"  name="test" required cols="150" rows="20"></textarea>
                         <br>
                         <button type="submit" class="btn btn-block btn-primary">Save</button>
                         {{-- <input type="submit" value="Kirim"> --}}

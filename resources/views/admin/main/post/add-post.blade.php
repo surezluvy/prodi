@@ -18,20 +18,18 @@
   </div>
 </nav>
 
-  <form method="post" class="container" style="margin-top: 65px" action="{{ route('admin-add-post-process') }}">
+  <form method="post" class="container" style="margin-top: 65px" action="{{ route('admin-add-post-process') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="usr">Judul:</label>
       <input type="text" class="form-control" id="usr" name="title">
     </div>
+    <label for="formFile" class="form-label">Thumbnail:</label>
+    <input class="form-control" type="file" id="formFile" name="thumbnail"><br>
     <label for="sel1">Silahkan pilih kategori:</label>
     <select class="form-control" id="sel1" name="category_id">
-      @foreach($categories as $cat)
-      <option value="{{ $cat->category_id }}">{{ $cat->name }}</option>
-        @foreach(\App\Models\Category::whereNull('parent_id')->where('category_id', '!=', $cat->parent_id)->orderBy('urut',
-        'ASC')->get() as $c)
+      @foreach($menus as $c)
         <option value="{{ $c->category_id }}">{{ $c->name }}</option>
-        @endforeach
       @endforeach
     </select><br>
     <textarea id="summernote" name="content"></textarea>

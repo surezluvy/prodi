@@ -37,6 +37,7 @@ class CategoryController extends Controller
                     Category::where('category_id', $data1[$parent]->children[$child]->category_id)->update([
                         'parent_id' => $data1[$parent]->category_id,
                         'urut' => $urut,
+                        'child' => null,
                     ]);
                     // echo 'child<br>';
                     // Category::where('category_id', $data1[$parent]->children[$child]->category_id)->update([
@@ -50,6 +51,7 @@ class CategoryController extends Controller
                 Category::where('category_id', $data1[$parent]->category_id)->update([
                     'parent_id' => null,
                     'urut' => $no2,
+                    'child' => 1,
                 ]);
             }
         };
