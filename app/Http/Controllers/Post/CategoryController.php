@@ -22,6 +22,7 @@ class CategoryController extends Controller
     }
     function sortCategory(Request $request){
         $data1 = json_decode($request->test);
+        // dd($data1[0]->children[0]);
         for ($parent = 0; $parent < count($data1); $parent++) {
             if(isset($data1[$parent]->children)){
                 $no = $parent+1;
@@ -37,8 +38,19 @@ class CategoryController extends Controller
                     Category::where('category_id', $data1[$parent]->children[$child]->category_id)->update([
                         'parent_id' => $data1[$parent]->category_id,
                         'urut' => $urut,
-                        'child' => null,
                     ]);
+                    Category::where('category_id', $data1[$parent]->category_id)->update([
+                        'child' => null
+                    ]);
+                    if(isset($data1[$parent]->children[0])){
+                        Category::where('category_id', $data1[$parent]->children[$child]->category_id)->update([
+                            'child' => 1
+                        ]);
+                    }else{
+                        Category::where('category_id', $data1[$parent]->children[$child]->category_id)->update([
+                            'child' => null
+                        ]);
+                    }
                     // echo 'child<br>';
                     // Category::where('category_id', $data1[$parent]->children[$child]->category_id)->update([
                     //     'parent_id' => $data1[$parent]->category_id,
@@ -51,8 +63,17 @@ class CategoryController extends Controller
                 Category::where('category_id', $data1[$parent]->category_id)->update([
                     'parent_id' => null,
                     'urut' => $no2,
-                    'child' => 1,
+                    'child' => 1
                 ]);
+                // if(isset($data1[$parent]->children[0])){
+                //     Category::where('category_id', $data1[$parent]->category_id)->update([
+                //         'child' => 1
+                //     ]);
+                // }else{
+                //     Category::where('category_id', $data1[$parent]->category_id)->update([
+                //         'child' => null
+                //     ]);
+                // }
             }
         };
         return back();

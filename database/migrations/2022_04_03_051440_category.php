@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id('category_id');
             $table->string('name')->unique();
             $table->string('urut');
-            $table->text('link')->nullable();
+            $table->integer('link')->nullable();
+            $table->string('child')->nullable();
             $table->integer('parent_id')->nullable();
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $url = ucfirst(request()->segment(count(request()->segments())));
-        $menus = Category::where('parent_id', null)->orderBy('urut', 'ASC')->get();
+        $menus = Category::where('child', 1)->orderBy('urut', 'ASC')->get();
         View::share('url', $url);
         View::share('menus', $menus);
     }

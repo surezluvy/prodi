@@ -25,9 +25,13 @@ class PageController extends Controller
         return view('admin.main.post.page', compact('pages', 'categories'));
     }
     function addPage(){
-        $categories = Category::where('parent_id', '!=', null)->orderBy('urut', 'ASC')->get();
-        return view('admin.main.post.add-page', compact('categories'));
+        $menus = Category::where('link', null)->where('child', 1)->orderBy('urut', 'ASC')->get();
+        return view('admin.main.post.add-page', compact('menus'));
     }
+    // function addPage(){
+    //     $categories = Category::where('parent_id', '!=', null)->orderBy('urut', 'ASC')->get();
+    //     return view('admin.main.post.add-page', compact('categories'));
+    // }
     function addPageProcess(Request $request){
         Page::create([
             'category_id' => $request->category_id,

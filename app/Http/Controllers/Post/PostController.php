@@ -32,7 +32,7 @@ class PostController extends Controller
         return view('admin.main.post.page', compact('posts', 'categories'));
     }
     function addPost(){
-        $menus = Category::where('child', 1)->where('link', null)->orderBy('urut', 'ASC')->get();
+        $menus = Category::where('link', null)->where('child', 1)->orderBy('urut', 'ASC')->get();
         return view('admin.main.post.add-post', compact('menus'));
     }
     function addPostProcess(Request $request){
