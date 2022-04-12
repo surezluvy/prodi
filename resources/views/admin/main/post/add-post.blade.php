@@ -29,7 +29,22 @@
     <label for="sel1">Silahkan pilih kategori:</label>
     <select class="form-control" id="sel1" name="category_id">
       @foreach($menus as $c)
+        @if(\App\Models\Post::where('category_id', $c->category_id)->first())
         <option value="{{ $c->category_id }}">{{ $c->name }}</option>
+        @endif
+
+        @if(!\App\Models\Page::where('category_id', $c->category_id)->first())
+        <option value="{{ $c->category_id }}">{{ $c->name }}</option>
+        @endif
+        <!-- <option value="{{ $c->category_id }}">{{ $c->name }}
+          @if(\App\Models\Post::where('category_id', $c->category_id)->first())
+             - [POST]
+          @elseif(\App\Models\Page::where('category_id', $c->category_id)->first()))
+            - [PAGE]
+          @elseif(\App\Models\Post::where('category_id', $c->category_id)->first() && \App\Models\Page::where('category_id', $c->category_id)->first()))
+            - [POST, PAGE]
+          @endif
+        </option> -->
       @endforeach
     </select><br>
     <textarea id="summernote" name="content"></textarea>

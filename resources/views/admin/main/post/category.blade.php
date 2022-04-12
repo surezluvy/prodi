@@ -190,8 +190,9 @@
                         @csrf
                         {{-- <textarea id="test" name="test"></textarea> --}}
                         {{-- <input type="text" id="ayam" name="test" required> --}}
-                        <textarea  id="ayam"  name="test" required cols="100" rows="10"></textarea>
+                        <!-- <textarea  id="ayam"  name="test" required cols="100" rows="10"></textarea> -->
                         <br>
+                        
                         <button type="submit" class="btn btn-block btn-primary">Save</button>
                         {{-- <input type="submit" value="Kirim"> --}}
                     </form>

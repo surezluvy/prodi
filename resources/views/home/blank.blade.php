@@ -10,11 +10,11 @@
                 <div class="breadcrumbs-inner">
                     <div class="container">
                         <div class="breadcrumbs-text">
-                            <h1 class="breadcrumbs-title">{{ $page->title }}</h1>
+                            <h1 class="breadcrumbs-title">{{ $cat->name }}</h1>
                             <div class="back-nav">
                                 <ul>
                                     <li><a href="{{ route('index') }}">Home</a></li>
-                                    <li>{{ $page->title }}</li>
+                                    <li>{{ $cat->name }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -24,9 +24,9 @@
         </div>
         <!--================= Breadcrumbs Section End Here =================-->
         <div id="react-contact" class="react-contact-page pt---100">
-            <div class="container">
+            <div class="container text-center mb-5">
                 
-                {!! $page->content !!}
+                <h2>404</h2>
 
             </div>
         </div>

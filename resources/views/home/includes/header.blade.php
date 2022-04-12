@@ -60,23 +60,25 @@
                     <!--================= Menu Structure =================-->
                     <div class="react-inner-menus">
                         <ul id="backmenu" class="react-menus home react-sub-shadow">
+
                             @foreach($menus as $menu)
-                                @if($menu->parent_id == null)
-                                <li> <a href="{{ route('post', $menu->category_id) }}">{{ $menu->name }}</a></li>
-                                @elseif($menu->link == null)    
-                                <li> <a href="#">{{ $menu->name }}</a>
-                                    <ul>
-                                        @foreach(\App\Models\Category::where('parent_id', $menu->category_id)->orderBy('urut', 'ASC')->get() as $subMenu)
-                                        <li> <a href="{{ route('post', $subMenu->category_id) }}">{{ $subMenu->name }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                                @else
+                                @if($menu->link != null)
                                 <li> <a href="{{ $menu->link }}">{{ $menu->name }}</a></li>
+                                @else
+                                    @if($menu->parent_id == null && $menu->child == null)
+                                    <li> <a href="#">{{ $menu->name }}</a>
+                                        <ul>
+                                        @foreach(\App\Models\Category::where('parent_id', $menu->category_id)->orderBy('urut', 'ASC')->get() as $subMenu)
+                                            <li> <a href="{{ route('post', $subMenu->category_id) }}">{{ $subMenu->name }}</a></li>
+                                        @endforeach
+                                        </ul>
+                                    @elseif($menu->parent_id == null && $menu->child != null)
+                                    <li> <a href="{{ route('post', $menu->category_id) }}">{{ $menu->name }}</a></li>
+                                    @endif
                                 @endif
                             @endforeach
                         </ul>
-                        <div class="searchbar-part">
+                        <!-- <div class="searchbar-part">
                             <div class="react-login">
                                 <a href="login.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -98,7 +100,7 @@
                                     </svg>
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </nav>
             </div>
