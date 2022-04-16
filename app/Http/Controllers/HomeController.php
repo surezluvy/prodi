@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Page;
 use App\Models\Lecturer;
+use App\Models\Kurikulum;
+use App\Models\Prestasi;
 
 class HomeController extends Controller
 {
@@ -16,9 +18,11 @@ class HomeController extends Controller
     {
         $url = ucfirst(request()->segment(count(request()->segments())));
         $menus = Category::orderBy('urut', 'ASC')->get();
+        $no = 1;
         // $menus = Category::where('child', 1)->orderBy('urut', 'ASC')->get();
         View::share('url', $url);
         View::share('menus', $menus);
+        View::share('no', $no);
     }
     function index(){
         return view('home.index');
@@ -40,10 +44,14 @@ class HomeController extends Controller
                 $dosen = Lecturer::all();
                 return view('home.dosen', compact('page', 'dosen'));    
             }elseif($page->type == 'kurikulum'){
-                $kurikulum = Lecturer::all();
+                $kurikulum = Kurikulum::all();
                 return view('home.kurikulum', compact('page', 'kurikulum'));
             }elseif($page->type == 'prestasi'){
-
+                $prestasi = Prestasi::all();
+                return view('home.prestasi', compact('page', 'prestasi'));
+            }elseif($page->type == 'galery'){
+                $prestasi = Prestasi::all();
+                return view('home.prestasi', compact('page', 'prestasi'));
             }else{
                 return view('home.single', compact('page')); 
             }
