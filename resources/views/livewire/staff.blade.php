@@ -1,0 +1,3 @@
+<div>
+    {{ dd($menus) }}
+</div>

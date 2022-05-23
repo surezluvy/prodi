@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('code')->unique();
             $table->integer('nidn')->unique();
+            $table->string('education');
+            $table->string('expertise');
             $table->timestamps();
         });
     }

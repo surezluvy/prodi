@@ -33,9 +33,9 @@
                 <div class="col-lg-5 text-right">
                     <div class="toolbar-sl-share">
                         <ul class="social-links">
-                            <li><a href="#"><span aria-hidden="true" class="social_facebook"></span></a></li>
-                            <li><a href="#"><span aria-hidden="true" class="social_twitter"></span></a></li>
-                            <li><a href="#"><span aria-hidden="true" class="social_linkedin"></span></a></li>
+                            <li><a href="javascript:void(0)"><span aria-hidden="true" class="social_facebook"></span></a></li>
+                            <li><a href="javascript:void(0)"><span aria-hidden="true" class="social_twitter"></span></a></li>
+                            <li><a href="javascript:void(0)"><span aria-hidden="true" class="social_linkedin"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <nav>
                     <!--================= Menu Toggle btn =================-->
                     <div class="menu-toggle">
-                        <div class="logo"><a href="index.html" class="logo-text"> <img
+                        <div class="logo"><a href="{{ route('index') }}" class="logo-text"> <img
                                     src="{{ asset('assets/main/images/logo.png') }}" alt="logo"> </a></div>
                         <button type="button" id="menu-btn">
                             <span class="icon-bar"></span>
@@ -63,12 +63,12 @@
                             @foreach($menus as $menu)
                                 @if($menu->link == null)
                                     @if($menu->parent_id == null)
-                                    <li> <a href="{{ route('post', $menu->category_id) }}">{{ $menu->name }}</a></li>
-                                    @else    
-                                    <li> <a href="#">{{ $menu->name }}</a>
+                                    <li> <a href="{{ route('post', $menu->menu_id) }}">{{ $menu->name }}</a></li>
+                                    @else
+                                    <li> <a href="javascript:void(0)">{{ $menu->name }}</a>
                                         <ul>
-                                            @foreach(\App\Models\Category::where('parent_id', $menu->category_id)->orderBy('urut', 'ASC')->get() as $subMenu)
-                                            <li> <a href="{{ route('post', $subMenu->category_id) }}">{{ $subMenu->name }}</a></li>
+                                            @foreach(\App\Models\Menu::where('parent_id', $menu->menu_id)->orderBy('urut', 'ASC')->get() as $subMenu)
+                                            <li> <a href="{{ route('post', $subMenu->menu_id) }}">{{ $subMenu->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     </li>
@@ -77,12 +77,12 @@
                                     <li> <a href="{{ $menu->link }}">{{ $menu->name }}</a></li>
                                 @endif
                                 <!-- @if($menu->parent_id == null)
-                                <li> <a href="{{ route('post', $menu->category_id) }}">{{ $menu->name }}</a></li>
-                                @elseif($menu->parent_id != null)    
-                                <li> <a href="#">{{ $menu->name }}</a>
+                                <li> <a href="{{ route('post', $menu->menu_id) }}">{{ $menu->name }}</a></li>
+                                @elseif($menu->parent_id != null)
+                                <li> <a href="javascript:void(0)">{{ $menu->name }}</a>
                                     <ul>
-                                        @foreach(\App\Models\Category::where('parent_id', $menu->category_id)->orderBy('urut', 'ASC')->get() as $subMenu)
-                                        <li> <a href="{{ route('post', $subMenu->category_id) }}">{{ $subMenu->name }}</a></li>
+                                        @foreach(\App\Models\Menu::where('parent_id', $menu->menu_id)->orderBy('urut', 'ASC')->get() as $subMenu)
+                                        <li> <a href="{{ route('post', $subMenu->menu_id) }}">{{ $subMenu->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>

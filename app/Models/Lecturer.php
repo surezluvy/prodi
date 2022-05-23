@@ -9,6 +9,7 @@ class Lecturer extends Model
 {
     use HasFactory;
     protected $guarded = ['lecturer_id'];
+    protected $primaryKey = 'lecturer_id';
 
     public function Expertise(){
         return $this->hasMany(Expertise::class, 'lecturer_id', 'lecturer_id');

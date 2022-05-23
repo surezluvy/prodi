@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/main/css/responsive.css') }}">
 </head>
 
-<body>
+<body class="@yield('body-class')">
     <!--================= Preloader Section Start Here =================-->
     <div id="react__preloader">
         <div id="react__circle_loader"></div>

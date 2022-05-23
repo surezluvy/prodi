@@ -4,6 +4,20 @@ var summernote_custom = {
             height: 300,
             tabsize: 2
         });
+        $('.summernote2').summernote({
+            placeholder: 'Hello stand alone ui',
+            tabsize: 2,
+            height: 400,
+            toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'underline', 'clear']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['table', ['table']],
+              ['insert', ['link', 'picture', 'video']],
+              ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+          });
         $('.inline-editor').summernote({
             airMode: true
         });
@@ -17,7 +31,7 @@ var summernote_custom = {
                 search: function (keyword, callback) {
                     callback($.grep(this.words, function (item) {
                         return item.indexOf(keyword) === 0;
-                    }));    
+                    }));
                 }
             }
         });

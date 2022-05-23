@@ -21,12 +21,12 @@
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
         </div>
         <!--================= Breadcrumbs Section End Here =================-->
 
         <div class="instructors___page pt---120 pb---140">
-            <div class="container pb---60">                        
+            <div class="container pb---60">
                 <div class="row">
                 	@foreach($dosen as $d)
                     <div class="col-lg-3">
@@ -35,25 +35,25 @@
                                 <img src="{{ asset('assets/main/images/instructors/1.jpg') }}" alt="course instructor">
                                 <div class="content__hover">
                                     <p>Why I say old chap that is spiffing he legged easy peasy.</p>
-                                    <ul>                                            
-                                        <li><a href="#"><span aria-hidden="true" class="social_facebook"></span></a></li>
-                                        <li><a href="#"><span aria-hidden="true" class="social_twitter"></span></a></li>
-                                        <li><a href="#"><span aria-hidden="true" class="social_linkedin"></span></a></li>
+                                    <ul>
+                                        <li><a href="javascript:void(0)"><span aria-hidden="true" class="social_facebook"></span></a></li>
+                                        <li><a href="javascript:void(0)"><span aria-hidden="true" class="social_twitter"></span></a></li>
+                                        <li><a href="javascript:void(0)"><span aria-hidden="true" class="social_linkedin"></span></a></li>
                                     </ul>
                                 </div>
-                            </div>                                    
-                            <div class="bottom-content"> 
-                                <h4><a href="#">{{ $d->name }}</a></h4>
+                            </div>
+                            <div class="bottom-content">
+                                <h4><a href="javascript:void(0)">{{ $d->name }}</a></h4>
                                 <p>{{ $d->education }}</p>
                                 <p>{{ $d->expertise }}</p>
-                            </div>                                 
+                            </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
             </div>
-        </div>                
+        </div>
     </div>
-        
+
 </div>
 @endsection

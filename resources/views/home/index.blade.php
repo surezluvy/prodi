@@ -6,64 +6,40 @@
         <!--================= Slider Section Start Here =================-->
         <div class="react-slider-part">
             <div class="home-sliders home2 owl-carousel">
+                @foreach($sliders as $slider)
                 <div class="single-slide">
                     <div class="slider-img">
-                        <img class="desktop" src="{{ asset('assets/main/images/slider/1.jpg') }}"
+                        <img class="desktop" style="max-height: 770px;" src="{{ asset('assets/main/images/slider/1.jpg') }}"
                             alt="Slider Image 1">
-                        <img class="mobile" src="{{ asset('assets/main/images/slider/11.jpg') }}"
-                            alt="Slider Image 1">
+                        {{-- <img class="desktop" style="max-height: 770px;" src="{{ asset('storage/slider/'.$slider->image) }}"
+                            alt="Slider Image 1"> --}}
+                        {{-- <img class="mobile" style="max-height: 770px;" src="{{ asset('storage/slider/'.$slider->image) }}"
+                            alt="Slider Image 1"> --}}
                     </div>
                     <div class="container">
                         <div class="slider-content">
                             <div class="content-part">
-                                <span class="slider-pretitle">Great Quality Cocial life</span>
+                                <span class="slider-pretitle">{{ $slider->subtitle }}</span>
                                 <h2 class="slider-title">
-                                    Discover the world of<br>
-                                    possible university.
+                                    {{ $slider->title }}
+                                    {{-- Discover the world of<br>
+                                    possible university. --}}
                                 </h2>
-                                <div class="slider-btn">
+                                {{-- <div class="slider-btn">
                                     <a href="about.html" class="react-btn-border">Admissions</a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
-                        <div class="event__video-btn--play">
+                        {{-- <div class="event__video-btn--play">
                             <a href="https://www.youtube.com/watch?v=e5Hc2B50Z7c"
                                 class="event__video-btn--play-btn custom-popup">
                                 <i class="arrow_triangle-right"></i>
                                 <em>Watch Video <br>Intro</em>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
-                <div class="single-slide">
-                    <div class="slider-img">
-                        <img class="desktop" src="{{ asset('assets/main/images/slider/2.jpg') }}"
-                            alt="Slider Image 1">
-                        <img class="mobile" src="{{ asset('assets/main/images/slider/12.jpg') }}"
-                            alt="Slider Image 1">
-                    </div>
-                    <div class="container">
-                        <div class="slider-content">
-                            <div class="content-part">
-                                <span class="slider-pretitle">Great Quality Cocial life</span>
-                                <h2 class="slider-title">
-                                    Discover the world of<br>
-                                    possible university.
-                                </h2>
-                                <div class="slider-btn">
-                                    <a href="about.html" class="react-btn-border">Admissions</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="event__video-btn--play">
-                            <a href="https://www.youtube.com/watch?v=e5Hc2B50Z7c"
-                                class="event__video-btn--play-btn custom-popup">
-                                <i class="arrow_triangle-right"></i>
-                                <em>Watch Video <br>Intro</em>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <!--================= Slider Section End Here =================-->
@@ -83,7 +59,7 @@
                             </div>
                             <div class="react-content">
                                 <h3 class="react-title"><a href="coureses-grid.html">Let’s Talk Science</a></h3>
-                                <a href="#" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
+                                <a href="javascript:void(0)" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="feather feather-arrow-right">
@@ -100,7 +76,7 @@
                             </div>
                             <div class="react-content">
                                 <h3 class="react-title"><a href="coureses-grid.html">Innovative Courses</a></h3>
-                                <a href="#" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
+                                <a href="javascript:void(0)" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="feather feather-arrow-right">
@@ -117,7 +93,7 @@
                             </div>
                             <div class="react-content">
                                 <h3 class="react-title"><a href="coureses-grid.html">Cloud Storage</a></h3>
-                                <a href="#" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
+                                <a href="javascript:void(0)" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="feather feather-arrow-right">
@@ -134,7 +110,7 @@
                             </div>
                             <div class="react-content">
                                 <h3 class="react-title"><a href="coureses-grid.html">Online Education</a></h3>
-                                <a href="#" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
+                                <a href="javascript:void(0)" class="r__link">Learn More <svg xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="feather feather-arrow-right">
@@ -165,7 +141,7 @@
                             <h2 class="about__title">Welcome to <br> <em>Echooling LMS Platform</em></h2>
                             <p class="about__paragraph">Education is both the act of teaching knowledge to others
                                 and<br> the act of receiving knowledge from someone else.</p>
-                            <p class="about__paragraph2"> Have questions? <a href="#"> Get Free Guide </a></p>
+                            <p class="about__paragraph2"> Have questions? <a href="javascript:void(0)"> Get Free Guide </a></p>
                             <p>Education also refers to the knowledge received through schooling instruction <br>and
                                 to the institution of teaching as a whole. The main purpose of education <br>is the
                                 integral development of a person.</p>
@@ -210,7 +186,7 @@
                                         <p>Why I say old chap that is spiffing he legged <br>it in my flat easy
                                             peasy.</p>
                                     </div>
-                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    <a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
                                             class="feather feather-arrow-right">
@@ -227,7 +203,7 @@
                                         <p>Why I say old chap that is spiffing he legged <br>it in my flat easy
                                             peasy.</p>
                                     </div>
-                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    <a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
                                             class="feather feather-arrow-right">
@@ -244,7 +220,7 @@
                                         <p>Why I say old chap that is spiffing he legged <br>it in my flat easy
                                             peasy.</p>
                                     </div>
-                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    <a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
                                             class="feather feather-arrow-right">
@@ -264,7 +240,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="#" class="more-about"> More about Campus Life <svg xmlns="http://www.w3.org/2000/svg"
+                    <a href="javascript:void(0)" class="more-about"> More about Campus Life <svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-arrow-right">
@@ -418,7 +394,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="#" class="view-courses"> View All Courses <svg xmlns="http://www.w3.org/2000/svg"
+                    <a href="javascript:void(0)" class="view-courses"> View All Courses <svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="feather feather-arrow-right">
@@ -484,7 +460,7 @@
                             <div class="event__card--content-area">
                                 <div class="event__card--date"><em>10</em> April, 2022</div>
                                 <div class="event_time">10:30 AM - 12:30PM</div>
-                                <h3 class="event__card--title"><a href="#">A Better Alternative To <br> Grading
+                                <h3 class="event__card--title"><a href="javascript:void(0)">A Better Alternative To <br> Grading
                                         Student Writing</a></h3>
                                 <div class="event_location"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -493,7 +469,7 @@
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg> New York, USA</div>
-                                <a class="event__card--link" href="#"> Find Out More <svg
+                                <a class="event__card--link" href="javascript:void(0)"> Find Out More <svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -509,7 +485,7 @@
                             <div class="event__card--content-area">
                                 <div class="event__card--date"><em>14</em> February, 2022</div>
                                 <div class="event_time">12:00 AM - 01:30PM</div>
-                                <h3 class="event__card--title"><a href="#">12 Things Successful <br> Mompreneurs</a>
+                                <h3 class="event__card--title"><a href="javascript:void(0)">12 Things Successful <br> Mompreneurs</a>
                                 </h3>
                                 <div class="event_location"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -518,7 +494,7 @@
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg> New York, USA</div>
-                                <a class="event__card--link" href="#"> Find Out More <svg
+                                <a class="event__card--link" href="javascript:void(0)"> Find Out More <svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -534,7 +510,7 @@
                             <div class="event__card--content-area">
                                 <div class="event__card--date"><em>26</em> March, 2022</div>
                                 <div class="event_time">01:30 AM - 02:00PM</div>
-                                <h3 class="event__card--title"><a href="#">Ethics in AI Live Event<br> Machines
+                                <h3 class="event__card--title"><a href="javascript:void(0)">Ethics in AI Live Event<br> Machines
                                         Judging.</a></h3>
                                 <div class="event_location"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -543,7 +519,7 @@
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg> New York, USA</div>
-                                <a class="event__card--link" href="#"> Find Out More <svg
+                                <a class="event__card--link" href="javascript:void(0)"> Find Out More <svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -559,7 +535,7 @@
                             <div class="event__card--content-area">
                                 <div class="event__card--date"><em>19</em> April, 2022</div>
                                 <div class="event_time">03:00 AM - 04:30PM</div>
-                                <h3 class="event__card--title"><a href="#">The Importance Of <br> Intrinsic
+                                <h3 class="event__card--title"><a href="javascript:void(0)">The Importance Of <br> Intrinsic
                                         Motivation.</a></h3>
                                 <div class="event_location"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -568,7 +544,7 @@
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg> New York, USA</div>
-                                <a class="event__card--link" href="#"> Find Out More <svg
+                                <a class="event__card--link" href="javascript:void(0)"> Find Out More <svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -584,7 +560,7 @@
                             <div class="event__card--content-area">
                                 <div class="event__card--date"><em>10</em> April, 2022</div>
                                 <div class="event_time">10:30 AM - 12:30PM</div>
-                                <h3 class="event__card--title"><a href="#">A Better Alternative To <br> Grading
+                                <h3 class="event__card--title"><a href="javascript:void(0)">A Better Alternative To <br> Grading
                                         Student Writing</a></h3>
                                 <div class="event_location"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -593,7 +569,7 @@
                                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg> New York, USA</div>
-                                <a class="event__card--link" href="#"> Find Out More <svg
+                                <a class="event__card--link" href="javascript:void(0)"> Find Out More <svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"

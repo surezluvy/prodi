@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id('page_id');
-            $table->foreignId('category_id');
-            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
+            $table->foreignId('menu_id');
+            $table->foreign('menu_id')->references('menu_id')->on('categories')->onDelete('cascade');
             $table->string('title');
-            $table->longText('content');
+            $table->string('type')->nullable();
+            $table->longText('content')->nullable();;
             $table->timestamps();
         });
     }

@@ -34,8 +34,8 @@
                             </li>
                             <li>
                                 <em class="icon"><img src="{{ asset('assets/main/images/contact/3.png') }}" alt="image"></em>
-                                <span class="text"><em>Contact</em> <a href="#">Mobile: (+88) - 1990 - 6886</a> <a
-                                        href="#">Mail: contact@echooling.com</a></span>
+                                <span class="text"><em>Contact</em> <a href="javascript:void(0)">Mobile: (+88) - 1990 - 6886</a> <a
+                                        href="javascript:void(0)">Mail: contact@echooling.com</a></span>
                             </li>
                             <li>
                                 <em class="icon"><img src="{{ asset('assets/main/images/contact/4.png') }}" alt="image"></em>
